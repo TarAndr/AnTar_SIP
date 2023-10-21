@@ -1,0 +1,35 @@
+#######################################
+# Syntax Coloring Map For Test
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+SIP	KEYWORD1	SIP
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setBuzzerFreq	KEYWORD2
+mute	KEYWORD2
+version	KEYWORD2
+
+######################################
+# Instances (KEYWORD2)
+#######################################
+signal	KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+LIBRARY_VERSION	LITERAL1
+LED_NUMS	LITERAL1
+DEF_BUZ_FREQ	LITERAL1
+shortBeep	LITERAL1
+lowPowerAlarm	LITERAL1
+emptyPowerAlarm	LITERAL1
+lockAlarm	LITERAL1
+modeNums	LITERAL1
