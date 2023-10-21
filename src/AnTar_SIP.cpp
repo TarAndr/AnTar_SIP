@@ -1,9 +1,9 @@
 /*
- * AnTar_SimpleIndicationPanel.cpp - Indication panel Library for Wiring/Arduino - Version 1.0
+ * AnTar_SIP.cpp - Simple indicator panel control library for Wiring/Arduino - Version 1.0
  *
  * The circuits can be found at
  *
- * http://www.
+ * https://github.com/TarAndr/AnTar_SIP
  */
 
 #include "Arduino.h"
