@@ -13,7 +13,7 @@
 const int redLedPin = 13;
 const int greenLedPin = 12;
 const int buzzerPin = A2;
-const long buzzerFreq = 3000;
+const long buzzerFreq = 4400;
 
 // create an instance of the panel class, specifying
 // the pins it's attached to and/or buzzer frequency
@@ -23,7 +23,7 @@ SIP lockPanel(redLedPin, greenLedPin, buzzerPin, buzzerFreq);
 //SIP lockPanel(redLedPin, greenLedPin, buzzerPin);
 
 void setup() {
-  // set the frequency of the buzzer to 3000 Hz
+  // set the frequency of the buzzer to 4400 Hz
   //lockPanel.setBuzzerFreq(buzzerFreq);
 }
 

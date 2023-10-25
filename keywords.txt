@@ -26,10 +26,13 @@ signal	KEYWORD2
 # Constants (LITERAL1)
 #######################################
 LIBRARY_VERSION	LITERAL1
-LED_NUMS	LITERAL1
+LEDS_NUM	LITERAL1
 DEF_BUZ_FREQ	LITERAL1
 shortBeep	LITERAL1
 lowPowerAlarm	LITERAL1
 emptyPowerAlarm	LITERAL1
 lockAlarm	LITERAL1
-modeNums	LITERAL1
+lockOpened	LITERAL1
+lockClosed	LITERAL1
+toLockAlarm	LITERAL1
+modesNum	LITERAL1

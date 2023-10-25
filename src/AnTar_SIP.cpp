@@ -1,9 +1,9 @@
 /*
- * AnTar_SIP.cpp - Simple indicator panel control library for Wiring/Arduino - Version 1.0
+ * AnTar_SimpleIndicationPanel.cpp - Indication panel Library for Wiring/Arduino - Version 1.0
  *
  * The circuits can be found at
  *
- * https://github.com/TarAndr/AnTar_SIP
+ * http://www.
  */
 
 #include "Arduino.h"
@@ -82,13 +82,13 @@ uint8_t SIP::version(void)
 void SIP::signal(signalMode mode)
 {
 	if(mode >= modesNum) return;
-	for(int i = 0; i < this->_beepRepeat[mode]; ++i) {
-		this->beep(this->_beepDelay[mode]);
-		if(this->_ledUse[mode][0]) redLed(this->ON);
-		if(this->_ledUse[mode][1]) greenLed(this->ON);
-		delay(this->_beepDelay[mode]);
-		if(this->_ledUse[mode][0]) redLed(this->OFF);
-		if(this->_ledUse[mode][1]) greenLed(this->OFF);
-		delay(this->_beepDelay[mode] / 2);
+	for(int i = 0; i < this->_signalModes[mode].beepRepeat; ++i) {
+		this->beep(this->_signalModes[mode].beepDelay);
+		if(this->_signalModes[mode].redLedUse) redLed(this->ON);
+		if(this->_signalModes[mode].greenLedUse) greenLed(this->ON);
+		delay(this->_signalModes[mode].beepDelay);
+		if(this->_signalModes[mode].redLedUse) redLed(this->OFF);
+		if(this->_signalModes[mode].greenLedUse) greenLed(this->OFF);
+		delay(this->_signalModes[mode].beepDelay / 2);
 	}
 }

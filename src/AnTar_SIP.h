@@ -50,23 +50,41 @@
 #define SHORT_BEEP_REPEAT 1		// Number of repetitions
 #define SHORT_BEEP_DELAY 200	// Repetition duration
 
-// lowPowerAlarm mode:
+// lowPowerAlarm:
 #define LOW_POWER_ALARM_RED true
 #define LOW_POWER_ALARM_GREEN true
 #define LOW_POWER_ALARM_REPEAT 3
 #define LOW_POWER_ALARM_DELAY 200
 
-// emptyPowerAlarm mode:
+// emptyPowerAlarm:
 #define EMPTY_POWER_ALARM_RED true
 #define EMPTY_POWER_ALARM_GREEN false
 #define EMPTY_POWER_ALARM_REPEAT 4
 #define EMPTY_POWER_ALARM_DELAY 400
 
-// lockAlarm mode:
+// lockAlarm:
 #define LOCK_ALARM_RED true
 #define LOCK_ALARM_GREEN false
 #define LOCK_ALARM_REPEAT 7
 #define LOCK_ALARM_DELAY 650
+
+// lockOpened:
+#define	LOCK_OPENED_DELAY 250
+#define	LOCK_OPENED_REPEAT 2
+#define	LOCK_OPENED_RED false
+#define	LOCK_OPENED_GREEN true
+
+// lockClosed:
+#define	LOCK_CLOSED_DELAY 500
+#define	LOCK_CLOSED_REPEAT 1
+#define	LOCK_CLOSED_RED true
+#define	LOCK_CLOSED_GREEN true
+
+// toLockAlarm
+#define	TO_LOCK_ALARM_DELAY 200
+#define	TO_LOCK_ALARM_REPEAT 2
+#define	TO_LOCK_ALARM_RED true
+#define	TO_LOCK_ALARM_GREEN false
 
 // Signal mode enumerator:
 enum signalMode {
@@ -74,6 +92,9 @@ enum signalMode {
 	lowPowerAlarm, 
 	emptyPowerAlarm, 
 	lockAlarm, 
+	lockOpened, 
+	lockClosed, 
+	toLockAlarm, 
 	modesNum	// this is to determine the number of modes
 };
 
@@ -123,44 +144,57 @@ class SIP {
     uint8_t _green_led_pin;		// green LED pin
     uint8_t _buzzer_pin;		// BUZZER pin
 
-	// LEDs usage map according to signal modes
-	// {RED_LED,	GREEN_LED}
-	const bool _ledUse[modesNum][LEDS_NUM] = {
-		{SHORT_BEEP_RED, 		SHORT_BEEP_GREEN}, 
-		{LOW_POWER_ALARM_RED, 	LOW_POWER_ALARM_GREEN}, 
-		{EMPTY_POWER_ALARM_RED, EMPTY_POWER_ALARM_GREEN}, 
-		{LOCK_ALARM_RED, 		LOCK_ALARM_GREEN}
+	struct SignalParams{
+		const uint16_t beepDelay;
+		const uint8_t beepRepeat;
+		const bool redLedUse;
+		const bool greenLedUse;
 	};
 
-	// Array of number of repetitions according to signal modes
-	const uint8_t _beepRepeat[modesNum] = {
-		SHORT_BEEP_REPEAT,
-		LOW_POWER_ALARM_REPEAT,
-		EMPTY_POWER_ALARM_REPEAT,
-		LOCK_ALARM_REPEAT
+	const SignalParams _signalModes[modesNum] = {
+		{
+			SHORT_BEEP_DELAY,
+			SHORT_BEEP_REPEAT,
+			SHORT_BEEP_RED,
+			SHORT_BEEP_GREEN
+		},
+		{
+			LOW_POWER_ALARM_DELAY,
+			LOW_POWER_ALARM_REPEAT,
+			LOW_POWER_ALARM_RED,
+			LOW_POWER_ALARM_GREEN
+		},
+		{
+			EMPTY_POWER_ALARM_DELAY,
+			EMPTY_POWER_ALARM_REPEAT,
+			EMPTY_POWER_ALARM_RED,
+			EMPTY_POWER_ALARM_GREEN
+		},
+		{
+			LOCK_ALARM_DELAY,
+			LOCK_ALARM_REPEAT,
+			LOCK_ALARM_RED,
+			LOCK_ALARM_GREEN
+		},
+		{
+			LOCK_OPENED_DELAY,
+			LOCK_OPENED_REPEAT,
+			LOCK_OPENED_RED,
+			LOCK_OPENED_GREEN
+		},
+		{
+			LOCK_CLOSED_DELAY,
+			LOCK_CLOSED_REPEAT,
+			LOCK_CLOSED_RED,
+			LOCK_CLOSED_GREEN
+		},
+		{
+			TO_LOCK_ALARM_DELAY,
+			TO_LOCK_ALARM_REPEAT,
+			TO_LOCK_ALARM_RED,
+			TO_LOCK_ALARM_GREEN
+		}
 	};
-
-	// Array of repetition durations according to signal modes
-	const uint16_t _beepDelay[modesNum] = {
-		SHORT_BEEP_DELAY,
-		LOW_POWER_ALARM_DELAY,
-		EMPTY_POWER_ALARM_DELAY, 
-		LOCK_ALARM_DELAY
-	};
-	
-/* 	struct SignalParams{
-		uint16_t beepDelay;
-		uint8_t beepRepeat;
-		bool redLedUse;
-		bool greenLedUse;
-	};
-
-	SignalParams signalMode[modesNum];
-
-	signalMode[shortBeep].redLedUse = SHORT_BEEP_RED;
-	signalMode[shortBeep].greenLedUse = SHORT_BEEP_GREEN;
-	signalMode[shortBeep].beepRepeat = SHORT_BEEP_REPEAT;
-	signalMode[shortBeep].beepDelay = SHORT_BEEP_DELAY; */
 };
 
 #endif
