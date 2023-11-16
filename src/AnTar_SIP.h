@@ -29,7 +29,7 @@
 #ifndef AnTar_SimpleIndicatorPanel_h
 #define AnTar_SimpleIndicatorPanel_h
 
-// Following string need for common anode LED:
+// The following line is required for a common anode LED:
 //#define COMMON_ANODE
 
 // Constants:
@@ -111,7 +111,7 @@ class SIP {
     void setBuzzerFreq(uint16_t buzzer_freq = DEF_BUZ_FREQ);
 
     // buzzer muting method:
-    void mute(bool state);
+    void mute(bool state = true);
 
 	// Library shortened version
     uint8_t version(void);
