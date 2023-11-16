@@ -7,6 +7,7 @@
  * This example code is in the public domain.
  */
 
+// Connecting the library
 #include <AnTar_SIP.h>
 
 // Pin numbers:
@@ -17,21 +18,24 @@ const long buzzerFreq = 4400;
 
 // create an instance of the panel class, specifying
 // the pins it's attached to and/or buzzer frequency
-SIP lockPanel(redLedPin, greenLedPin, buzzerPin, buzzerFreq);
+SIP myPanel(redLedPin, greenLedPin, buzzerPin, buzzerFreq);
 
 // without set frequency (with default value):
-//SIP lockPanel(redLedPin, greenLedPin, buzzerPin);
+//SIP myPanel(redLedPin, greenLedPin, buzzerPin);
 
 void setup() {
   // set the frequency of the buzzer to 4400 Hz
-  //lockPanel.setBuzzerFreq(buzzerFreq);
+  //myPanel.setBuzzerFreq(buzzerFreq);
+
+  // Setting the default buzzer frequency
+  //myPanel.setBuzzerFreq();
 }
 
 void loop() {
   // switching modes
 	for(int mode = shortBeep; mode < modesNum; ++mode) {
-		lockPanel.signal(signalMode(mode));
+		myPanel.signal(mode);
 		delay(1000);
 	}
-	delay(1000);
+	delay(2000);
 }

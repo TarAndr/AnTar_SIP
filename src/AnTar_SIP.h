@@ -40,7 +40,7 @@
 #define LEDS_NUM 2
 
 // Default buzzer frequency in Hz:
-#define DEF_BUZ_FREQ 2222
+#define DEF_BUZ_FREQ 2048
 
 // Determining signal parameters in accordance with its mode:
 
@@ -105,7 +105,7 @@ class SIP {
     SIP(uint8_t red_led_pin, uint8_t green_led_pin, uint8_t buzzer_pin, uint16_t buzzer_freq = DEF_BUZ_FREQ);
 
     // main indication method:
-    void signal(signalMode mode);
+    void signal(uint8_t mode);
 
     // buzzer frequency setter method:
     void setBuzzerFreq(uint16_t buzzer_freq = DEF_BUZ_FREQ);

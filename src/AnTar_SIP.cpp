@@ -79,7 +79,7 @@ uint8_t SIP::version(void)
 /* 
  *	Main method for panel control
  */
-void SIP::signal(signalMode mode)
+void SIP::signal(uint8_t mode)
 {
 	if(mode >= modesNum) return;
 	for(int i = 0; i < this->_signalModes[mode].beepRepeat; ++i) {
