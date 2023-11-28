@@ -52,9 +52,11 @@ To use the functions of the library, you first need to download and install it, 
 You can download the library from the version control system repository. It is recommended to always download the stable version from the repository page in the section https://github.com/TarAndr/AnTar_SIP/releases. But if you wish or have difficulties, you can use the latest published version on the main branch of the repository at https://github.com/TarAndr/AnTar_SIP/archive/main.zip.
 
 After downloading, the archive must be unpacked into the Arduino libraries folder, for example for the Windows operating system this can be the “*Documents\Arduino\libraries*” folder. The downloaded archive can also be integrated through the development environment itself, which will probably be a more correct solution. To do this, in the "**Sketch**" section from the "**Include Library**" list, select "**Add ZIP Library...**" and specify the library archive file:
+
 [![Sketch >> Include Library >> Add ZIP Library...](extras/images/Add_ZIP_Library.png "Sketch >> Include Library >> Add ZIP Library...")](extras/images/Add_ZIP_Library.png "Sketch >> Include Library >> Add ZIP Library...")
 
 If the above steps are completed successfully, the message “**Library installed**” should appear in the information window, and examples of installed libraries should appear in the examples of installed libraries for working with the newly added library:
+
 [![Examples for working with the library](extras/images/Examples.png "Examples for working with the library")](extras/images/Examples.png "Examples for working with the library")
 
 Having opened the selected example, you can start your own project based on it or copy parts of the example code into an existing project that you started earlier. Next we will look at what steps need to be taken to do this.
@@ -73,9 +75,11 @@ The output components are LEDs and a miniature buzzer, although light bulbs and/
 These pulses control the lighting of the LEDs and the sound of the buzzer. At the time of writing the first version, a two-color LED with red and green components was used, although separate LEDs can be used, and in the future, if necessary, the library can be modified to work with a three-color RGB LED to determine a wide range of different glow colors.
 
 LEDs and a buzzer are connected to any pins of the Arduino board, which are specified in the sketch programmatically:
+
 [![Block diagram of connections of executive nodes to the Arduino board](extras/images/AnTar_SIP_Electrical_Block_Diagram.GIF "Block diagram of connections of executive nodes to the Arduino board")](extras/images/AnTar_SIP_Electrical_Block_Diagram.GIF "Block diagram of connections of executive nodes to the Arduino board")
 
 You can also use a microcontroller without a debugging board as a control device, having first compiled and downloaded the source code for it:
+
 [![Schematic diagram of the indicator panel on the microcontroller](extras/images/AnTar_SIP_Electrical_Circuit_Diagram.GIF "Schematic diagram of the indicator panel on the microcontroller")](extras/images/AnTar_SIP_Electrical_Circuit_Diagram.GIF "Schematic diagram of the indicator panel on the microcontroller")
 
 In this particular case, in both circuits, a two-color LED is connected through one common current-limiting resistor and works normally, since the supply voltage is 5 Volts; with a lower supply voltage, it is recommended to use separate current-limiting resistors for each crystal, since with a mixed glow one color will overlap another due to differences in voltage drops on LEDs of different glow colors.
