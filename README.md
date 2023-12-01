@@ -1,5 +1,7 @@
 # A Simple Indicator Panel Library for Arduino
 
+## Purpose
+
 This library allows you to control simple indicator panel with LEDs and buzzer. 
 
 For more information about this library please visit us at
@@ -9,13 +11,13 @@ For more information about this library please visit us at
 
 
 ## Content:
-- [Purpose](#A_Simple_Indicator_Panel_Library_for_Arduino "Purpose")
-- [License agreement](#MIT_License "License agreement")
-- [Installation](#Installation "Installation")
-- [Description](#Description "Description")
-	- [Technical requirements](#Technical_requirements "Technical requirements")
-	- [Library methods](#Library_methods "Library methods")
-- [Conclusion](#Conclusion "Conclusion")
+- [Purpose](#purpose "Purpose")
+- [License agreement](#mit-license "License agreement")
+- [Installation](#installation "Installation")
+- [Description](#description "Description")
+	- [Technical requirements](#technical-requirements "Technical requirements")
+	- [Library methods](#library-methods "Library methods")
+- [Conclusion](#conclusion "Conclusion")
 
 
 ------------
@@ -151,4 +153,5 @@ To subsequently activate the buzzer, you will need to call the specified method 
 
 
 
-Documentation made in [Open source online Markdown editor](https://pandao.github.io/editor.md/en.html "Open source online Markdown editor") and converted to HTML in [Free Markdown to HTML Converter](https://markdowntohtml.com/ "Convert Markdown to HTML").
+Documentation made in [Open source online Markdown editor](https://pandao.github.io/editor.md/en.html "Open source online Markdown editor") 
+and converted to HTML in [StackEdit](https://stackedit.io/app# "StackEdit").

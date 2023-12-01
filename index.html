@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>index</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#a-simple-indicator-panel-library-for-arduino">A Simple Indicator Panel Library for Arduino</a>
+<ul>
+<li><a href="#purpose">Purpose</a></li>
+<li><a href="#content">Content:</a></li>
+<li><a href="#mit-license">MIT License</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#description">Description</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="a-simple-indicator-panel-library-for-arduino">A Simple Indicator Panel Library for Arduino</h1>
+<h2 id="purpose">Purpose</h2>
+<p>This library allows you to control simple indicator panel with LEDs and buzzer.</p>
+<p>For more information about this library please visit us at<br>
+<a href="https://github.com/TarAndr/AnTar_SIP" title="https://github.com/TarAndr/AnTar_SIP">https://github.com/TarAndr/AnTar_SIP</a></p>
+<hr>
+<h2 id="content">Content:</h2>
+<ul>
+<li><a href="#purpose" title="Purpose">Purpose</a></li>
+<li><a href="#mit-license" title="License agreement">License agreement</a></li>
+<li><a href="#installation" title="Installation">Installation</a></li>
+<li><a href="#description" title="Description">Description</a>
+<ul>
+<li><a href="#technical-requirements" title="Technical requirements">Technical requirements</a></li>
+<li><a href="#library-methods" title="Library methods">Library methods</a></li>
+</ul>
+</li>
+<li><a href="#conclusion" title="Conclusion">Conclusion</a></li>
+</ul>
+<hr>
+<h2 id="mit-license">MIT License</h2>
+<p>Copyright © 2023 Andrey Tarasenko</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br>
+of this software and associated documentation files (the “Software”), to deal<br>
+in the Software without restriction, including without limitation the rights<br>
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell<br>
+copies of the Software, and to permit persons to whom the Software is<br>
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all<br>
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE<br>
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,<br>
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE<br>
+SOFTWARE.</p>
+<hr>
+<h2 id="installation">Installation</h2>
+<p>To use the functions of the library, you first need to download and install it, and then connect it to the source code of your program.</p>
+<p>You can download the library from the version control system repository. It is recommended to always download the stable version from the repository page in the section <a href="https://github.com/TarAndr/AnTar_SIP/releases">https://github.com/TarAndr/AnTar_SIP/releases</a>. But if you wish or have difficulties, you can use the latest published version on the main branch of the repository at <a href="https://github.com/TarAndr/AnTar_SIP/archive/main.zip">https://github.com/TarAndr/AnTar_SIP/archive/main.zip</a>.</p>
+<p>After downloading, the archive must be unpacked into the Arduino libraries folder, for example for the Windows operating system this can be the “<em>Documents\Arduino\libraries</em>” folder. The downloaded archive can also be integrated through the development environment itself, which will probably be a more correct solution. To do this, in the “<strong>Sketch</strong>” section from the “<strong>Include Library</strong>” list, select “<strong>Add ZIP Library…</strong>” and specify the library archive file:</p>
+<p><a href="extras/images/Add_ZIP_Library.png" title="Sketch >> Include Library >> Add ZIP Library..."><img src="extras/images/Add_ZIP_Library.png" alt="Sketch >> Include Library >> Add ZIP Library..." title="Sketch >> Include Library >> Add ZIP Library..."></a></p>
+<p>If the above steps are completed successfully, the message “<strong>Library installed</strong>” should appear in the information window, and examples of installed libraries should appear in the examples of installed libraries for working with the newly added library:</p>
+<p><a href="extras/images/Examples.png" title="Examples for working with the library"><img src="extras/images/Examples.png" alt="Examples for working with the library" title="Examples for working with the library"></a></p>
+<p>Having opened the selected example, you can start your own project based on it or copy parts of the example code into an existing project that you started earlier. Next we will look at what steps need to be taken to do this.</p>
+<hr>
+<h2 id="description">Description</h2>
+<p>The purpose of the library is to indicate various, predetermined states or events of the device using various light and sound signals. First, let’s look at the hardware component necessary to provide the required functionality.</p>
+<h3 id="technical-requirements">Technical requirements</h3>
+<p>The output components are LEDs and a miniature buzzer, although light bulbs and/or a loudspeaker with associated controls can of course be used if desired. Alert signals are not very complex and are impulses of a certain duration with a given number of repetitions.</p>
+<p>These pulses control the lighting of the LEDs and the sound of the buzzer. At the time of writing the first version, a two-color LED with red and green components was used, although separate LEDs can be used, and in the future, if necessary, the library can be modified to work with a three-color RGB LED to determine a wide range of different glow colors.</p>
+<p>LEDs and a buzzer are connected to any pins of the Arduino board, which are specified in the sketch programmatically:</p>
+<p><a href="extras/images/AnTar_SIP_Electrical_Block_Diagram.GIF" title="Block diagram of connections of executive nodes to the Arduino board"><img src="extras/images/AnTar_SIP_Electrical_Block_Diagram.GIF" alt="Block diagram of connections of executive nodes to the Arduino board" title="Block diagram of connections of executive nodes to the Arduino board"></a></p>
+<p>You can also use a microcontroller without a debugging board as a control device, having first compiled and downloaded the source code for it:</p>
+<p><a href="extras/images/AnTar_SIP_Electrical_Circuit_Diagram.GIF" title="Schematic diagram of the indicator panel on the microcontroller"><img src="extras/images/AnTar_SIP_Electrical_Circuit_Diagram.GIF" alt="Schematic diagram of the indicator panel on the microcontroller" title="Schematic diagram of the indicator panel on the microcontroller"></a></p>
+<p>In this particular case, in both circuits, a two-color LED is connected through one common current-limiting resistor and works normally, since the supply voltage is 5 Volts; with a lower supply voltage, it is recommended to use separate current-limiting resistors for each crystal, since with a mixed glow one color will overlap another due to differences in voltage drops on LEDs of different glow colors.</p>
+<h3 id="library-methods">Library methods</h3>
+<p>First of all, the library file must be included using the #include directive as shown below:</p>
+<p><code>#include &lt;AnTar_SIP.h&gt;</code></p>
+<p>Next, an object is created as an instance of the library class, and here the parameters for setting the connected panel pins are passed to the constructor:</p>
+<p><code>SIP myPanel(redLedPin, greenLedPin, buzzerPin, buzzerFreq);</code></p>
+<p>Here the object name can be anything valid, and not necessarily “myPanel”. The pin numbers for the red LED, green LED and buzzer are transmitted as parameters, respectively. The last parameter passes the resonant frequency of the buzzer used, and if it is not set explicitly without passing this parameter to the constructor, then the frequency will be set to the default value, which can be viewed and overridden in the source code of the “AnTar_SIP.h” library.</p>
+<p>The frequency of the buzzer can also be changed while the program is running, and in the specified source code file you can view in detail the available methods and constants for working with the library. For example, to change the sound frequency, the following method is defined:</p>
+<p><code>myPanel.setBuzzerFreq(buzzerFreq);</code></p>
+<p>Where the newly set frequency in Hertz is transmitted as the <strong>buzzerFreq</strong> parameter. <strong>setBuzzerFreq();</strong> method; called without parameters also sets the buzzer sound frequency to the default value.</p>
+<p>The main method for displaying information on the panel in the form of light and sound signals is the <strong>signal(mode);</strong> method; where the number of a predefined display mode is passed as a parameter, for example like this:</p>
+<p><code>myPanel.signal(4);</code></p>
+<p>This can be a short double beep with the simultaneous lighting of the green LED, or three repeated long beeps along with the glow of the red LED. But since remembering mode numbers by heart is inconvenient and not aesthetically pleasing, since magic numbers appear in the program code, a list of mode numbers with clear names was defined in the library file (but not in the class itself).</p>
+<p>But since the library was created from the idea of electronic lock indication signals, the names of the modes here are appropriate. At the time of writing, the list of modes looked like this:</p>
+<pre><code>enum signalMode {
+     shortBeep = 0,
+     lowPowerAlarm,
+     emptyPowerAlarm,
+     lockAlarm,
+     lockOpened
+     lockClosed
+     toLockAlarm,
+     modesNum // this is to determine the number of modes
+};
+</code></pre>
+<p>As can be seen from the listing of a total of seven indication signal modes here, the last value is used to determine the number of modes, which can always be increased at your discretion. To do this, you need to work a little on the structure of the mode parameters, where the duration and number of signal repetitions are set, as well as which LEDs are used in a particular mode.</p>
+<p>Using this enumeration, you can, for example, enable the indication of a completely discharged battery without thinking about the number of the required signal, by calling the corresponding method as follows:</p>
+<p><code>myPanel.signal(emptyPowerAlarm);</code></p>
+<p>In addition to the main method, the library defines an auxiliary method designed to disable and/or enable the buzzer sound:</p>
+<p><code>mute(state);</code></p>
+<p>If you call the <strong>mute();</strong> without parameters or with the value <strong>true</strong>, the buzzer will not be activated during the indication. For example usage:</p>
+<pre><code>myPanel.mute();
+// or
+myPanel.mute(true);
+</code></pre>
+<p>To subsequently activate the buzzer, you will need to call the specified method with the value <strong>false</strong>, as in this example:</p>
+<p><code>myPanel.mute(false);</code></p>
+<hr>
+<h2 id="conclusion">Conclusion</h2>
+<p>Documentation made in <a href="https://pandao.github.io/editor.md/en.html" title="Open source online Markdown editor">Open source online Markdown editor</a><br>
+and converted to HTML in <a href="https://stackedit.io/app#" title="StackEdit">StackEdit</a>.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
