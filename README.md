@@ -17,6 +17,7 @@ For more information about this library please visit us at
 - [Description](#description "Description")
 	- [Technical requirements](#technical-requirements "Technical requirements")
 	- [Library methods](#library-methods "Library methods")
+	- [Simple example](#simple-example "Simple example")
 - [Conclusion](#conclusion "Conclusion")
 
 
@@ -113,16 +114,19 @@ This can be a short double beep with the simultaneous lighting of the green LED,
 
 But since the library was created from the idea of electronic lock indication signals, the names of the modes here are appropriate. At the time of writing, the list of modes looked like this:
 
-    enum signalMode {
-         shortBeep = 0,
-         lowPowerAlarm,
-         emptyPowerAlarm,
-         lockAlarm,
-         lockOpened
-         lockClosed
-         toLockAlarm,
-         modesNum // this is to determine the number of modes
-    };
+```cpp
+enum signalMode {
+     shortBeep = 0,
+     lowPowerAlarm,
+     emptyPowerAlarm,
+     lockAlarm,
+     lockOpened
+     lockClosed
+     toLockAlarm,
+     modesNum // this is to determine the number of modes
+};
+```
+
 
 As can be seen from the listing of a total of seven indication signal modes here, the last value is used to determine the number of modes, which can always be increased at your discretion. To do this, you need to work a little on the structure of the mode parameters, where the duration and number of signal repetitions are set, as well as which LEDs are used in a particular mode.
 
@@ -136,13 +140,56 @@ In addition to the main method, the library defines an auxiliary method designed
 
 If you call the **mute();** without parameters or with the value **true**, the buzzer will not be activated during the indication. For example usage:
 
-    myPanel.mute();
-    // or
-    myPanel.mute(true);
+```cpp
+myPanel.mute();
+// or
+myPanel.mute(true);
+```
+
 
 To subsequently activate the buzzer, you will need to call the specified method with the value **false**, as in this example:
 
 `myPanel.mute(false);`
+
+
+### Simple example
+
+And finally, a complete basic example is given for sequentially displaying all available modes with a slight delay between transitions and repetition. In the body of the main loop, all available preset states are cycled through, reproducing the corresponding light and sound signals:
+
+```cpp
+// Connecting the library
+#include <AnTar_SIP.h>
+
+// Pin numbers:
+const int redLedPin = 13;
+const int greenLedPin = 12;
+const int buzzerPin = A2;
+const long buzzerFreq = 4400;
+
+// create an instance of the panel class, specifying
+// the pins it's attached to and/or buzzer frequency
+SIP myPanel(redLedPin, greenLedPin, buzzerPin, buzzerFreq);
+
+// without frequency setting (with default value):
+//SIP myPanel(redLedPin, greenLedPin, buzzerPin);
+
+void setup() {
+  // setting the buzzer frequency to 4400 Hz
+  //myPanel.setBuzzerFreq(buzzerFreq);
+
+  // Setting the default buzzer frequency
+  //myPanel.setBuzzerFreq();
+}
+
+void loop() {
+  // switching modes
+	for(int mode = shortBeep; mode < modesNum; ++mode) {
+		myPanel.signal(mode);
+		delay(1000);
+	}
+	delay(2000);
+}
+```
 
 
 

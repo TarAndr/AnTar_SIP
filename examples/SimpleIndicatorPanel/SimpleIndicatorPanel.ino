@@ -20,11 +20,11 @@ const long buzzerFreq = 4400;
 // the pins it's attached to and/or buzzer frequency
 SIP myPanel(redLedPin, greenLedPin, buzzerPin, buzzerFreq);
 
-// without set frequency (with default value):
+// without frequency setting (with default value):
 //SIP myPanel(redLedPin, greenLedPin, buzzerPin);
 
 void setup() {
-  // set the frequency of the buzzer to 4400 Hz
+  // setting the buzzer frequency to 4400 Hz
   //myPanel.setBuzzerFreq(buzzerFreq);
 
   // Setting the default buzzer frequency

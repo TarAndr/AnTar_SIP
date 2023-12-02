@@ -44,6 +44,7 @@
 <ul>
 <li><a href="#technical-requirements" title="Technical requirements">Technical requirements</a></li>
 <li><a href="#library-methods" title="Library methods">Library methods</a></li>
+<li><a href="#simple-example" title="Simple example">Simple example</a></li>
 </ul>
 </li>
 <li><a href="#conclusion" title="Conclusion">Conclusion</a></li>
@@ -99,16 +100,16 @@ SOFTWARE.</p>
 <p><code>myPanel.signal(4);</code></p>
 <p>This can be a short double beep with the simultaneous lighting of the green LED, or three repeated long beeps along with the glow of the red LED. But since remembering mode numbers by heart is inconvenient and not aesthetically pleasing, since magic numbers appear in the program code, a list of mode numbers with clear names was defined in the library file (but not in the class itself).</p>
 <p>But since the library was created from the idea of electronic lock indication signals, the names of the modes here are appropriate. At the time of writing, the list of modes looked like this:</p>
-<pre><code>enum signalMode {
-     shortBeep = 0,
-     lowPowerAlarm,
-     emptyPowerAlarm,
-     lockAlarm,
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">enum</span> signalMode <span class="token punctuation">{</span>
+     shortBeep <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+     lowPowerAlarm<span class="token punctuation">,</span>
+     emptyPowerAlarm<span class="token punctuation">,</span>
+     lockAlarm<span class="token punctuation">,</span>
      lockOpened
      lockClosed
-     toLockAlarm,
-     modesNum // this is to determine the number of modes
-};
+     toLockAlarm<span class="token punctuation">,</span>
+     modesNum <span class="token comment">// this is to determine the number of modes</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>As can be seen from the listing of a total of seven indication signal modes here, the last value is used to determine the number of modes, which can always be increased at your discretion. To do this, you need to work a little on the structure of the mode parameters, where the duration and number of signal repetitions are set, as well as which LEDs are used in a particular mode.</p>
 <p>Using this enumeration, you can, for example, enable the indication of a completely discharged battery without thinking about the number of the required signal, by calling the corresponding method as follows:</p>
@@ -116,12 +117,47 @@ SOFTWARE.</p>
 <p>In addition to the main method, the library defines an auxiliary method designed to disable and/or enable the buzzer sound:</p>
 <p><code>mute(state);</code></p>
 <p>If you call the <strong>mute();</strong> without parameters or with the value <strong>true</strong>, the buzzer will not be activated during the indication. For example usage:</p>
-<pre><code>myPanel.mute();
-// or
-myPanel.mute(true);
+<pre class=" language-cpp"><code class="prism  language-cpp">myPanel<span class="token punctuation">.</span><span class="token function">mute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// or</span>
+myPanel<span class="token punctuation">.</span><span class="token function">mute</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>To subsequently activate the buzzer, you will need to call the specified method with the value <strong>false</strong>, as in this example:</p>
 <p><code>myPanel.mute(false);</code></p>
+<h3 id="simple-example">Simple example</h3>
+<p>And finally, a complete basic example is given for sequentially displaying all available modes with a slight delay between transitions and repetition. In the body of the main loop, all available preset states are cycled through, reproducing the corresponding light and sound signals:</p>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token comment">// Connecting the library</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;AnTar_SIP.h&gt;</span></span>
+
+<span class="token comment">// Pin numbers:</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> redLedPin <span class="token operator">=</span> <span class="token number">13</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> greenLedPin <span class="token operator">=</span> <span class="token number">12</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> buzzerPin <span class="token operator">=</span> A2<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">long</span> buzzerFreq <span class="token operator">=</span> <span class="token number">4400</span><span class="token punctuation">;</span>
+
+<span class="token comment">// create an instance of the panel class, specifying</span>
+<span class="token comment">// the pins it's attached to and/or buzzer frequency</span>
+SIP <span class="token function">myPanel</span><span class="token punctuation">(</span>redLedPin<span class="token punctuation">,</span> greenLedPin<span class="token punctuation">,</span> buzzerPin<span class="token punctuation">,</span> buzzerFreq<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// without frequency setting (with default value):</span>
+<span class="token comment">//SIP myPanel(redLedPin, greenLedPin, buzzerPin);</span>
+
+<span class="token keyword">void</span> <span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// setting the buzzer frequency to 4400 Hz</span>
+  <span class="token comment">//myPanel.setBuzzerFreq(buzzerFreq);</span>
+
+  <span class="token comment">// Setting the default buzzer frequency</span>
+  <span class="token comment">//myPanel.setBuzzerFreq();</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">loop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// switching modes</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> mode <span class="token operator">=</span> shortBeep<span class="token punctuation">;</span> mode <span class="token operator">&lt;</span> modesNum<span class="token punctuation">;</span> <span class="token operator">++</span>mode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		myPanel<span class="token punctuation">.</span><span class="token function">signal</span><span class="token punctuation">(</span>mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <hr>
 <h2 id="conclusion">Conclusion</h2>
 <p>Documentation made in <a href="https://pandao.github.io/editor.md/en.html" title="Open source online Markdown editor">Open source online Markdown editor</a><br>
