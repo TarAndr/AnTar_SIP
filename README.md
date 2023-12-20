@@ -199,6 +199,9 @@ void loop() {
 ## Conclusion
 
 
+Thank you for exploring the AnTar Simple Indicator Panel (SIP) library for Arduino. We hope this library provides you with a straightforward solution for integrating LED and buzzer-based indicator panels into your projects. Your feedback and contributions are highly appreciated. Feel free to report any issues, suggest improvements, or contribute to the development of this library on GitHub.
+
+Happy coding with AnTar SIP!
 
 Documentation made in [Open source online Markdown editor](https://pandao.github.io/editor.md/en.html "Open source online Markdown editor") 
 and converted to HTML in [StackEdit](https://stackedit.io/app# "StackEdit").
