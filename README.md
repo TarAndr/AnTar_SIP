@@ -13,6 +13,7 @@ For more information about this library please visit us at
 ## Content:
 - [Purpose](#purpose "Purpose")
 - [License agreement](#mit-license "License agreement")
+- [Demo Video](#demo-video "Demo Video")
 - [Installation](#installation "Installation")
 - [Description](#description "Description")
 	- [Technical requirements](#technical-requirements "Technical requirements")
@@ -49,8 +50,8 @@ SOFTWARE.
 ------------
 
 
-## Video
-extras\video\AnTar SIP.mp4
+## Demo Video
+https://github.com/TarAndr/AnTar_SIP/assets/88667005/de390f02-cc83-451a-a1d0-73d85ef9f53c
 
 ------------
 
